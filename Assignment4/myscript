@@ -1,0 +1,7 @@
+sbatch --reservation=eece5698 --mem 100Gb spark-master.slurm
+
+traceroute c0017
+
+sbatch -N 3 -p general --mem 100Gb --exclusive spark-workers.slurm spark://10.99.248.29:7077
+
+spark-submit --master spark://10.99.248.29:7077 --executor-memory 100G --driver-memory 100G MFspark.py small_data 5 --N 40 --gain 0.001 --pow 0.2 --maxiter 10 --latent 4 --regul 0.0
